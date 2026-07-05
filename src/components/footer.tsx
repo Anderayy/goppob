@@ -1,6 +1,27 @@
 import Link from "next/link";
 import { Grid3X3, Mail, MessageCircle, Send } from "lucide-react";
 
+const footerLinks: Record<string, Array<[string, string]>> = {
+  Produk: [
+    ["Pulsa", "/pulsa"],
+    ["Data", "/data"],
+    ["PLN", "/pln"],
+    ["E-Wallet", "/e-wallet"],
+  ],
+  Platform: [
+    ["Business", "/business"],
+    ["API Documentation", "/api-documentation"],
+    ["Transaction Tracking", "/transaction-tracking"],
+    ["Promotions", "/promotions"],
+  ],
+  Akun: [
+    ["Login", "/login"],
+    ["Register", "/register"],
+    ["Dashboard", "/dashboard"],
+    ["Admin CMS", "/admin/login"],
+  ],
+};
+
 export function Footer() {
   return (
     <footer className="border-t border-emerald-900/10 bg-[#f6f8f3]">
@@ -10,23 +31,21 @@ export function Footer() {
           <p className="text-sm leading-7 text-slate-600">Platform PPOB modern untuk mengelola pembayaran digital pelanggan dan bisnis dalam satu panel.</p>
           <div className="mt-5 flex gap-3 text-emerald-700"><Send /><MessageCircle /><Mail /></div>
         </div>
-        <FooterGroup title="Produk" items={["Pulsa", "Data", "PLN", "E-Wallet"]} />
-        <FooterGroup title="Platform" items={["Business", "API Documentation", "Transaction Tracking", "Promotions"]} />
-        <FooterGroup title="Bantuan" items={["Help Center", "Blog", "Terms", "Privacy Policy"]} />
+        {Object.entries(footerLinks).map(([title, items]) => <FooterGroup key={title} title={title} items={items} />)}
       </div>
-      <div className="border-t border-emerald-900/10 py-5 text-center text-xs text-slate-500">© 2026 goppob.com · Semua Pembayaran Digital Dalam Satu Panel.</div>
+      <div className="border-t border-emerald-900/10 py-5 text-center text-xs text-slate-500">&copy; 2026 goppob.com - Semua Pembayaran Digital Dalam Satu Panel.</div>
     </footer>
   );
 }
 
-function FooterGroup({ title, items }: { title: string; items: string[] }) {
+function FooterGroup({ title, items }: { title: string; items: Array<[string, string]> }) {
   return (
     <div>
       <h3 className="mb-4 font-bold uppercase tracking-wide text-[#143d2b]">{title}</h3>
       <div className="grid gap-3 text-sm text-slate-600">
-        {items.map((item) => (
-          <Link key={item} href={`/${item.toLowerCase().replaceAll(" ", "-")}`} className="hover:text-emerald-700">
-            {item}
+        {items.map(([label, href]) => (
+          <Link key={href} href={href} className="hover:text-emerald-700">
+            {label}
           </Link>
         ))}
       </div>

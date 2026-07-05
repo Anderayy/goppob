@@ -40,6 +40,7 @@ export function SiteHeader() {
               <input className="w-44 bg-transparent outline-none" placeholder="Cari produk..." />
             </label>
             <Link href="/login" className="font-bold text-[#143d2b]">Login</Link>
+            <Link href="/admin/login" className="font-bold text-[#143d2b]">Admin CMS</Link>
             <Link href="/register" className="rounded-full bg-[#143d2b] px-6 py-3 font-black text-white shadow-lg shadow-emerald-200 transition hover:bg-emerald-600">
               Register
             </Link>
@@ -77,6 +78,7 @@ export function SiteHeader() {
                 {label}
               </Link>
             ))}
+            <Link onClick={() => setOpen(false)} className="rounded-2xl bg-white px-4 py-3 font-semibold text-slate-700 shadow-sm" href="/admin/login">Admin CMS</Link>
           </div>
         </div>
       )}
