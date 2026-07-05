@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f8f3;
+  --foreground: #14211b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Inter", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 4%, rgba(16, 185, 129, 0.16), transparent 28%),
+    radial-gradient(circle at 86% 0%, rgba(37, 99, 235, 0.13), transparent 30%),
+    linear-gradient(180deg, #fbfcf7 0%, #f6f8f3 48%, #eef5ee 100%);
+  color: var(--foreground);
+  font-family: "Inter", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.paper-card {
+  border: 1px solid rgba(20, 33, 27, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 24px 70px rgba(27, 51, 39, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.hero-bento {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.64)),
+    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.18), transparent 28%),
+    radial-gradient(circle at 72% 80%, rgba(37, 99, 235, 0.14), transparent 30%);
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(20, 33, 27, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 33, 27, 0.045) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+@keyframes lift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes logo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-lift {
+  animation: lift 5s ease-in-out infinite;
+}
+
+.float-delay {
+  animation: lift 5.6s ease-in-out infinite;
+  animation-delay: -1.4s;
+}
+
+.ticker {
+  animation: ticker 26s linear infinite;
+}
+
+.logo-marquee {
+  animation: logo-marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
