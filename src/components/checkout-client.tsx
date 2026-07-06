@@ -58,7 +58,7 @@ export function CheckoutClient() {
               <Row label="Biaya Layanan" value={rupiah(product.adminFee)} />
               <Row label="Diskon Promo" value="-Rp 750" accent />
               <div className="mt-6 border-t border-slate-200 pt-6"><Row label="Total Bayar" value={rupiah(total)} big accent /></div>
-              <button className="mt-6 w-full rounded-full bg-[#143d2b] py-4 text-xl font-black text-white shadow-lg shadow-emerald-200" type="button">Bayar Sekarang</button>
+              <Link href="/login?next=checkout" className="mt-6 block w-full rounded-full bg-[#143d2b] py-4 text-center text-xl font-black text-white shadow-lg shadow-emerald-200">Login untuk Bayar</Link>
             </div>
           </div>
           <div className="paper-card rounded-[28px] p-7">
