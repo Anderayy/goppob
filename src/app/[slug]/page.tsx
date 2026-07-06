@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { ProductCard } from "@/components/product-card";
+import { ResellerForm } from "@/components/reseller-form";
 import { SiteHeader } from "@/components/site-header";
 import { categories, mainMenu, products, promos } from "@/lib/data";
 
@@ -12,6 +13,7 @@ type PageProps = {
 const content: Record<string, { title: string; copy: string }> = {
   promotions: { title: "Promotions", copy: "Flash promo, cashback, dan campaign produk digital aktif." },
   "transaction-tracking": { title: "Transaction Tracking", copy: "Pantau invoice, pembayaran, dan status provider secara realtime." },
+  reseller: { title: "Program Reseller", copy: "Daftar sebagai penjual layanan digital GoPPOB. Jalur ini terpisah dari direct buy pelanggan." },
   business: { title: "Business", copy: "Akun bisnis dengan deposit saldo, API key, webhook, dan laporan." },
   "api-documentation": { title: "API Documentation", copy: "Dokumentasi mock endpoint untuk integrasi PPOB dan callback webhook." },
   "help-center": { title: "Help Center", copy: "Panduan transaksi, refund, pembayaran, dan tiket bantuan." },
@@ -51,7 +53,7 @@ export default async function GenericPage({ params }: PageProps) {
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 py-12">
-        {slug === "transaction-tracking" ? <TrackingPanel /> : slug === "promotions" ? <PromoList /> : slug === "login" || slug === "register" ? <AuthPanel mode={slug} /> : (
+        {slug === "transaction-tracking" ? <TrackingPanel /> : slug === "promotions" ? <PromoList /> : slug === "reseller" ? <ResellerPanel /> : slug === "login" || slug === "register" ? <AuthPanel mode={slug} /> : (
           <>
             <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-2xl font-black text-[#14211b]">{category ? `${category.name} Products` : "Product Catalog"}</h2>
@@ -67,6 +69,27 @@ export default async function GenericPage({ params }: PageProps) {
       </section>
       <Footer />
     </main>
+  );
+}
+
+function ResellerPanel() {
+  return (
+    <div className="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
+      <section className="paper-card rounded-[30px] p-8">
+        <span className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-700">Form reseller</span>
+        <h2 className="mt-5 text-3xl font-black text-[#14211b]">Daftar jadi partner GoPPOB.</h2>
+        <p className="mt-3 text-slate-600">Isi data toko, volume transaksi, dan kebutuhan layanan. Setelah submit, admin akan menghubungi calon reseller untuk aktivasi saldo dan katalog.</p>
+        <ResellerForm />
+      </section>
+      <aside className="paper-card rounded-[30px] p-8">
+        <h3 className="text-2xl font-black text-[#14211b]">Yang reseller dapatkan</h3>
+        <div className="mt-6 grid gap-3">
+          {["Harga khusus reseller", "Dashboard saldo dan mutasi", "Invoice otomatis untuk pelanggan", "Akses API bisnis dan webhook", "Support refund dan laporan"].map((item) => (
+            <div className="rounded-2xl bg-emerald-50 px-4 py-3 font-bold text-slate-700" key={item}>{item}</div>
+          ))}
+        </div>
+      </aside>
+    </div>
   );
 }
 

@@ -74,6 +74,7 @@ export const mainMenu = [
   ["Entertainment", "/entertainment"],
   ["Promotions", "/promotions"],
   ["Transaction Tracking", "/transaction-tracking"],
+  ["Reseller", "/reseller"],
   ["Business", "/business"],
   ["API Documentation", "/api-documentation"],
   ["Help Center", "/help-center"],
